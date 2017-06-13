@@ -29,7 +29,7 @@ class PythonSpiderSpider(scrapy.Spider):
 
         next_page = response.css('div.item_con_pager > div > a:nth-last-child(1)::attr(href)').extract_first()
         if next_page is not None:
-            #yield response.follow(next_page, self.parse)
+            yield response.follow(next_page, self.parse)
             pass
 
     def errback(self, failure):
