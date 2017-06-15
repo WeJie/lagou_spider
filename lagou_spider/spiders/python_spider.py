@@ -23,7 +23,7 @@ class PythonSpiderSpider(scrapy.Spider):
             item['publish_time'] = job.css('div.position > div.p_top > span::text').extract_first()
             item['company_name'] = job.css('div.company > div.company_name > a::text').extract_first()
             item['money'] = job.css('div.position > div.p_bot > div > span::text').extract_first()
-            item['experience'] = job.css('div.position > div.p_bot > div::text').extract_first()
+            item['experience'] = job.css('div.position > div.p_bot > div').re_first(r"-->(.*)")
             item['industry'] = job.css('div.company > div.industry::text').extract_first().strip()
             yield item
 
